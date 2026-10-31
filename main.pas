@@ -761,6 +761,8 @@ type
     function SecondsToString(j: integer): string;
     function DoAddTorrent(const FileName: Utf8String; IsWatchTorrent: boolean): boolean;
     procedure UpdateTray;
+    procedure UpdateThemeColors;
+    procedure ThemeChanged(Sender: TObject);
     procedure HideApp;
     procedure ShowApp;
     procedure DownloadFinished(const TorrentName: string);
@@ -968,7 +970,7 @@ uses
 {$endif darwin}
   synacode, ConnOptions, clipbrd, DateUtils, TorrProps, DaemonOptions, About,
   ToolWin, download, ColSetup, AddLink, MoveTorrent, AddTracker, lcltype,
-  Options, ButtonPanel, BEncode, synautil, Math, FolderHistory;
+  Options, ButtonPanel, BEncode, synautil, Math, FolderHistory, Themes;
 
   {TMyHashMap}
   function TMyHashMap.DefaultHashKey(const Key: Integer): Integer;
@@ -1810,12 +1812,11 @@ begin
   FTrackers:=TStringList.Create;
   FTrackers.Sorted:=True;
   FReconnectTimeOut:=-1;
-  FAlterColor:=GetLikeColor(gTorrents.Color, -$10);
+  UpdateThemeColors;
+  // Colors derived from the system palette are plain RGB values, so they
+  // have to be recalculated when the system switches between light and dark.
+  ThemeServices.OnThemeChange:=@ThemeChanged;
   lvFilter.Items.ExtraColumns:=2;
-  gTorrents.AlternateColor:=FAlterColor;
-  lvPeers.AlternateColor:=FAlterColor;
-  lvTrackers.AlternateColor:=FAlterColor;
-  gStats.AlternateColor:=FAlterColor;
   FPendingTorrents:=TStringList.Create;
   FPendingTorrents.OwnsObjects:=False; // Object slots hold the sentinel, not instances.
   FPendingClipboardTorrents:=TStringList.Create;
@@ -1869,8 +1870,6 @@ begin
   acAltSpeed.ImageIndex:=-1;
   tbtAltSpeed.ImageIndex:=i;
 {$endif}
-  txTransferHeader.Color:=GetLikeColor(clBtnFace, -15);
-  txTorrentHeader.Color:=txTransferHeader.Color;
   txTransferHeader.Caption:=' ' + txTransferHeader.Caption;
   txTorrentHeader.Caption:=' ' + txTorrentHeader.Caption;
   txTransferHeader.Height:=txTransferHeader.Canvas.TextHeight(txTransferHeader.Caption) + 2;
@@ -2128,6 +2127,7 @@ begin
     MakeTranslationFile;
   end;
 
+  ThemeServices.OnThemeChange:=nil;
   DeleteFileUTF8(FRunFileName);
   FPasswords.Free;
   FResolver.Free;
@@ -3162,6 +3162,27 @@ begin
     HideWaitMsg;
     Dec(FAddingTorrent);
   end;
+end;
+
+procedure TMainForm.UpdateThemeColors;
+begin
+  // The base colors are symbolic system colors that follow the current
+  // appearance, but GetLikeColor resolves them to fixed RGB values.
+  FAlterColor:=GetLikeColor(clWindow, -$10);
+  gTorrents.AlternateColor:=FAlterColor;
+  lvPeers.AlternateColor:=FAlterColor;
+  lvTrackers.AlternateColor:=FAlterColor;
+  gStats.AlternateColor:=FAlterColor;
+  txTransferHeader.Color:=GetLikeColor(clBtnFace, -15);
+  txTorrentHeader.Color:=txTransferHeader.Color;
+end;
+
+procedure TMainForm.ThemeChanged(Sender: TObject);
+begin
+  UpdateThemeColors;
+  // The torrent progress bitmap is drawn with resolved colors as well.
+  if FTorrentProgress <> nil then
+    ProcessPieces(FLastPieces, FLastPieceCount, FLastDone);
 end;
 
 procedure TMainForm.UpdateTray;
