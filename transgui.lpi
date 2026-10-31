@@ -205,7 +205,7 @@
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
-      <SmallerCode Value="True"/>
+      <SmallerCode Value="False"/>
     </CodeGeneration>
     <Other>
       <Verbosity>
