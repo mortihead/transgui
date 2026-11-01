@@ -116,6 +116,7 @@ Reconnect in %d seconds=Atkārtoti savienoties pēc %d sekundēm
 Remaining=Atlicis
 Remote host=IP
 "Remote to local path mappings.~Examples:~/share=\\pch\share~/var/downloads/music=Z:\music"="Lokālo ceļu piemērošanas attālinātiem.~Piemēram:~/share=\\pch\share~/var/downloads/music=Z:\music"
+Remove data=Dzēst datus
 Remove torrent and Data=Dzēst torrentu un datus
 Remove torrent=Dzēst torrentu
 Remove=Dzēst

@@ -130,6 +130,7 @@ Ratio=Forhold
 Reconnect in %d seconds=Kobler til igjen om %d sekunder
 Remaining=Gjenstående
 Remote host=Ekstern tjener
+Remove data=Slett data
 Remove torrent and Data=Fjern torrent og tilhørende data
 Remove torrent=Fjern torrent
 Remove=Fjern

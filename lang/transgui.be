@@ -116,6 +116,7 @@ Reconnect in %d seconds=Спроба падлучэньня празь %d сэк
 Remaining=Засталося
 Remote host=Аддалены хост
 "Remote to local path mappings.~Examples:~/share=\\pch\share~/var/downloads/music=Z:\music"="Супастаўленьне лакальных шляхоў аддаленым.~Напрыклад:~/share=\\pch\share~/var/downloads/music=Z:\music"
+Remove data=Выдаліць даныя
 Remove torrent and Data=Выдаліць торэнт і файлы
 Remove torrent=Выдаліць торэнт
 Remove=Выдаліць

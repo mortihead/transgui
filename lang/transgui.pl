@@ -130,6 +130,7 @@ Ratio=Ratio
 Reconnect in %d seconds=Ponawianie próby za %d sekund
 Remaining=Pozostało
 Remote host=Zdalny host
+Remove data=Usuń dane
 Remove torrent and Data=Usuń torrenta razem z danymi
 Remove torrent=Usuń torrenta
 Remove=Usuń

@@ -101,6 +101,7 @@ resourcestring
   sRemoveTorrentDataMulti = 'Are you sure to remove %d selected torrents and all their associated DATA?';
   sRemoveTorrent = 'Are you sure to remove torrent ''%s''?';
   sRemoveTorrentMulti = 'Are you sure to remove %d selected torrents?';
+  sRemoveData = 'Remove data';
   sUnableGetFilesList = 'Unable to get files list';
   sTrackerError = 'Tracker';
   sSkip = 'skip';
@@ -970,7 +971,7 @@ uses
 {$endif darwin}
   synacode, ConnOptions, clipbrd, DateUtils, TorrProps, DaemonOptions, About,
   ToolWin, download, ColSetup, AddLink, MoveTorrent, AddTracker, lcltype,
-  Options, ButtonPanel, BEncode, synautil, Math, FolderHistory, Themes;
+  Options, ButtonPanel, BEncode, synautil, Math, FolderHistory, Themes, ConfirmDlg;
 
   {TMyHashMap}
   function TMyHashMap.DefaultHashKey(const Key: Integer): Integer;
@@ -7016,7 +7017,12 @@ begin
       s:=Format(MsgMulti, [gTorrents.SelCount]);
 
     s:=TranslateString(s, True);
-    if MessageDlg('', s, mtConfirmation, mbYesNo, 0, mbNo) <> mrYes then exit;
+    // Offer to remove the data as well, unless it is already requested or not supported by the daemon
+    if not RemoveLocalData and (RpcObj.RPCVersion >= 4) then begin
+      if not ConfirmWithCheckBox(s, sRemoveData, RemoveLocalData) then exit;
+    end
+    else
+      if MessageDlg('', s, mtConfirmation, mbYesNo, 0, mbNo) <> mrYes then exit;
   finally
     gTorrents.Tag:=0;
   end;

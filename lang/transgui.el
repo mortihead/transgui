@@ -130,6 +130,7 @@ Ratio=Αναλογία
 Reconnect in %d seconds=Επανασύνδεση σε %d δευτερόλεπτα
 Remaining=Υπολείπονται
 Remote host=Δ/νση υπολογιστή
+Remove data=Διαγραφή δεδομένων
 Remove torrent and Data=Διαγραφή του torrent και των Αρχείων
 Remove torrent=Διαγραφή μόνο του torrent
 Remove=Διαγραφή

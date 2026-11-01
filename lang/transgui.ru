@@ -130,6 +130,7 @@ Ratio=Коэффициент
 Reconnect in %d seconds=Повтор подключения через %d секунд
 Remaining=Осталось
 Remote host=Удаленный узел
+Remove data=Удалить данные
 Remove torrent and Data=Удалить торрент и файлы
 Remove torrent=Удалить торрент
 Remove=Удалить

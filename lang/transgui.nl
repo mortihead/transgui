@@ -130,6 +130,7 @@ Ratio=Ratio
 Reconnect in %d seconds=Opnieuw verbinden in %d seconden
 Remaining=Resterend
 Remote host=Externe host
+Remove data=Gegevens verwijderen
 Remove torrent and Data=Torrent en data verwijderen
 Remove torrent=Torrent verwijderen
 Remove=Verwijderen

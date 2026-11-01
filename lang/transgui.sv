@@ -130,6 +130,7 @@ Ratio=Förhållande
 Reconnect in %d seconds=Anslut på nytt om %d sekunder
 Remaining=Återstående
 Remote host=Fjärrserver
+Remove data=Ta bort data
 Remove torrent and Data=Ta bort torrent och data
 Remove torrent=Ta bort torrent
 Remove=Ta bort

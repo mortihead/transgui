@@ -129,6 +129,7 @@ Ratio=Ratio
 Reconnect in %d seconds=Znovupřipojení za %d sekund
 Remaining=Zbývá
 Remote host=Vzdálený host
+Remove data=Smazat data
 Remove torrent and Data=Smazat torrent a data
 Remove torrent=Smazat torrent
 Remove=Smazat
